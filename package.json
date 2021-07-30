@@ -22,6 +22,7 @@
   },
   "scripts": {
     "start": "cross-env BROWSER='chrome' react-scripts start",
+    "start:local": "env-cmd -f .env cross-env BROWSER='chrome' react-scripts start",
     "build": "react-scripts build",
     "build:prod": "env-cmd -f .env.build react-scripts build",
     "test": "react-scripts test",
