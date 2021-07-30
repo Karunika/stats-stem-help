@@ -23,11 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors())
 app.use(bodyParser.json())
 
-app.get('/', (req, res) => {
-    res.send('Looks like you are not on the right page')
-})
-
-app.use('/api', async (req, res)=>{
+app.use('/', async (req, res)=>{
    let answer = await db.getUser(req.originalUrl.split(`/`)[2])
    res.send(answer)
    return answer
