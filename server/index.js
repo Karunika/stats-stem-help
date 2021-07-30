@@ -25,7 +25,7 @@ if (process.env.NODE_ENV !== 'production')
     app.use(cors())
 app.use(bodyParser.json())
 
-app.use('/:userId', async (req, res)=>{
+app.get('/:userId', async (req, res)=>{
    let answer = await db.getUser(req.params.userId)
    res.send(answer)
    return answer
