@@ -4,8 +4,7 @@ const { DB_URI } = process.env;
 const Schema = mongoose.Schema
 
 function portConnect(port) {
-  if(!DB_URI) return connURI(`mongodb://localhost:${port}/information`);
-  else return connURI(DB_URI)
+  return connURI(DB_URI ?? `mongodb://localhost:${port}/information`);
 }
   
   // iife
