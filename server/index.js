@@ -20,7 +20,9 @@ console.log(argv)
 const apiPort = argv.port
 
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use(cors())
+// do not use cors on production (delt on nginx side)
+if (process.env.NODE_ENV !== 'production') {
+    app.use(cors())
 app.use(bodyParser.json())
 
 app.use('/', async (req, res)=>{
