@@ -71,8 +71,7 @@ class Buttons extends React.Component {
 
           let data = this.props.primary
           let arr = []
-
-          if(!data.thankedYearly[0]) return null
+          if(!data.thankedYearly?.[0]) return null
           if(target==="compare") {
             this.setState({graphed: null})
             this.setState({errored: true})
