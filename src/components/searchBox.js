@@ -34,7 +34,8 @@ class SearchBox extends React.Component {
     }
 
     async getData(id) {
-        let axious = await axios(`http://localhost:3000/api/${id}`)
+        // simple fix for now
+        let axious = await axios(process.env.REACT_APP_API ?? `http://localhost:3000/${id}`)
         if(axious && axious.data) {
             return axious.data
         } else {
