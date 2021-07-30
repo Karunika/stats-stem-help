@@ -21,12 +21,12 @@ const apiPort = argv.port
 
 app.use(bodyParser.urlencoded({ extended: true }))
 // do not use cors on production (delt on nginx side)
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== 'production')
     app.use(cors())
 app.use(bodyParser.json())
 
-app.use('/', async (req, res)=>{
-   let answer = await db.getUser(req.originalUrl.split(`/`)[2])
+app.use('/:userId', async (req, res)=>{
+   let answer = await db.getUser(req.params.userId)
    res.send(answer)
    return answer
 })
