@@ -25,8 +25,12 @@ const apiPort = argv.port
 
 expressApp.use(bodyParser.urlencoded({ extended: true }))
 // do not use cors on production (delt on nginx side)
-if (process.env.NODE_ENV !== 'production')
+if (process.env.NODE_ENV.toLowerCase() !== 'production') {
+    console.log('In non-production. CORS header has been included')
     expressApp.use(cors())
+} else {
+    console.log('In production. CORS header has not been included')
+}
 
 expressApp.use(bodyParser.json())
 
