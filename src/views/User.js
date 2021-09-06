@@ -16,7 +16,7 @@ const User = () => {
     const {path, url} = useRouteMatch();
     const [primary, setPrimary] = useState(``);
     const [error, setError] = useState(``);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const fetchData = async id => {
         let axious = await axios((process.env.REACT_APP_API ?? `http://localhost:3000`) + `/${id}`)
         return axious?.data;
