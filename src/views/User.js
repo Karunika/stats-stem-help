@@ -16,25 +16,33 @@ const User = () => {
     const {path, url} = useRouteMatch();
     const [primary, setPrimary] = useState(``);
     const [error, setError] = useState(``);
+    const [loading, setLoading] = useState(false);
     const fetchData = async id => {
         let axious = await axios((process.env.REACT_APP_API ?? `http://localhost:3000`) + `/${id}`)
         return axious?.data;
     }
     useEffect(() => {
         (async () => {
+            setLoading(true);
             const response = await fetchData(userId);
             if(!response) setError(`User not found`)
             else setPrimary(response)
+            setLoading(false);
         })();
     }, [userId])
     return (
-        <>
-            {error ? <h1>{error}</h1> : <Buttons targets={targets} url={url} />}
-            <Switch>
-                <Route path={`${path}/:targetId`}>
-                    <Graph primary={primary} secondary={null} />
-                </Route>
-            </Switch>
+        <>  {loading ? 
+            <div className="lds-ring"><div></div><div></div><div></div><div></div></div> :
+            <>
+                {error ? <h1>{error}</h1> :
+                <Buttons targets={targets} url={url} />}
+                <Switch>
+                    <Route path={`${path}/:targetId`}>
+                        <Graph primary={primary} secondary={null} />
+                    </Route>
+                </Switch>
+            </>
+            }
         </>
     )
 }
