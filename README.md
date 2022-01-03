@@ -14,6 +14,10 @@ Run the server in `/server` by issuing
 node index.js
 ```
 
+You can also connect to the api server
+
+`https://api.stem.help/v1/service/stem/thankedstats`
+
 Run the application
 ```
 npm start
